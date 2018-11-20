@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <title>To do App</title>
+  </head>
+  <body>
+    <form action="/app/index/" method="post">{% csrf_token %}
+      <div class="form-group">
+        <label for="title">Title</label>
+        <input type="text" name="title" class="form-control" id="title">
+      </div>
+      <div class="form-group">
+        <label for="description">Description</label>
+        <input type="text" name="description" class="form-control" id="description">
+      </div>
+      <div class="form-group">
+        <label for="status"></label>
+        <select id="status" name="status">
+          <option value="inprogress">In progress</option>
+          <option value="pending">Pending</option>
+          <option value="completed">Completed</option>
+        </select>
+      </div>
+        <button type="submit" name="save" value="true" class="btn btn-default">Save</button>
+    </form>
+
+    <ul class="list-group">
+        <!--<li class="list-group-item">First item<span class="pull-right glyphicon glyphicon-pencil"></span><span class="pull-right glyphicon glyphicon-remove"></span></li>-->
+
+{%for i in obj%}
+        <li class="list-group-item"><b>Title</b>: {{i.title}} <b>Description</b>: {{i.description}} <b>Date time</b>: {{i.date_time}}, <b>Status</b>: {{i.status}} ,<b>Created</b>: {{i.created}},<b> Modified</b>: {{i.modified}}<a href ="/app/edit/?id={{i.id}}"><span class="pull-right glyphicon glyphicon-pencil"></span></a><a href ="/app/remove/?id={{i.id}}"><span class="pull-right glyphicon glyphicon-remove"></span></a></li>
+
+{%endfor%}
+
+      <!--<li class="list-group-item">Second item<span class="pull-right glyphicon glyphicon-pencil"><span class="pull-right glyphicon glyphicon-remove"></span></li>-->
+      <!--<li class="list-group-item">Third item<span class="pull-right glyphicon glyphicon-pencil"><span class="pull-right glyphicon glyphicon-remove"></span></li>-->
+    </ul>
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+  </body>
+</html>
